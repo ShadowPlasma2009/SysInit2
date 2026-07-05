@@ -18,4 +18,4 @@ chmod +x main.sh
 
 Log out and log back in for the changes to take place.
 
-Footnote: Unlike the previous script, this one isn't destructive and won't destroy your home directory. I am not responsible for any unexpected behaviour.
+Footnote: Unlike the previous script, this one isn't destructive and won't destroy your home directory. I am not responsible for any unexpected behaviour. No AI was used except a few time I let Copilot generate commit notes.
