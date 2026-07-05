@@ -188,3 +188,5 @@ sleep 0.5
 
 printf "Deleting different stray files and folders so their respective software\n"
 printf "can recreate them in XDG Directories."
+
+rm -f .bash_history .zsh_history *zcomdump*
