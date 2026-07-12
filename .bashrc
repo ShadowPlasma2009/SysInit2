@@ -28,16 +28,16 @@ export GOPATH="$XDG_DATA_HOME/go"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
 export LANG=en_US.UTF-8
-if command -v micro &> /dev/null; then
-    export EDITOR=micro
+if command -v micro &>/dev/null; then
+  export EDITOR=micro
 else
-    export EDITOR=nano
+  export EDITOR=nano
 fi
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # Don't put duplicate lines or lines starting
@@ -48,9 +48,8 @@ HISTFILESIZE=10000
 HISTSIZE=10000
 
 if [[ ! "$PROMPT_COMMAND" =~ "history -a" ]]; then
-    PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+  PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 fi
-
 
 # Append to history file, don't overrite.
 shopt -s histappend
@@ -60,15 +59,14 @@ shopt -s histappend
 shopt -s checkwinsize
 
 # Modern PS1 Options
-# --- Modern Interactive Prompt ---
 # Uncomment desired PS1
 if [ "$color_prompt" = yes ] || [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    #    PS1='\[\e[0;38;5;82m\]$ \[\e[0;38;5;45m\]\u \[\e[0;38;5;45m\](\[\e[0;38;5;39m\]\W\[\e[0;38;5;45m\]) \[\e[0;1;38;5;45m\]>\[\e[0m\]'
-    #    PS1='\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\$ '
-         PS1='\[\e[0;2;38;5;226m\]\$ \[\e[0;1;38;5;154m\]\u \[\e[0;2;38;5;157m\]in \[\e[0;1;38;5;208m\]\W \[\e[0;38;5;43m\]> \[\e[0m\]'
-    #    PS1='\[\e[0;2;38;5;46m\]$ \[\e[0;2;38;5;46m\]\u \[\e[0;2;38;5;47m\](\[\e[0;1;38;5;46m\]\W\[\e[0;2;38;5;47m\]) \[\e[0;1;38;5;46m\]>\[\e[0m\]'
+  #    PS1='\[\e[0;38;5;82m\]$ \[\e[0;38;5;45m\]\u \[\e[0;38;5;45m\](\[\e[0;38;5;39m\]\W\[\e[0;38;5;45m\]) \[\e[0;1;38;5;45m\]>\[\e[0m\]'
+  #    PS1='\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\$ '
+  PS1='\[\e[0;2;38;5;226m\]\$ \[\e[0;1;38;5;154m\]\u \[\e[0;2;38;5;157m\]in \[\e[0;1;38;5;208m\]\W \[\e[0;38;5;43m\]> \[\e[0m\]'
+  #    PS1='\[\e[0;2;38;5;46m\]$ \[\e[0;2;38;5;46m\]\u \[\e[0;2;38;5;47m\](\[\e[0;1;38;5;46m\]\W\[\e[0;2;38;5;47m\]) \[\e[0;1;38;5;46m\]>\[\e[0m\]'
 else
-    PS1='\u@\h:\w\$ '
+  PS1='\u@\h:\w\$ '
 fi
 
 # Advanced Tab Completion
@@ -80,15 +78,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Case-insensitive completion
+bind 'set completion-ignore-case on'
+
 # Colors & Aliases
 
 # eza
-if command -v eza &> /dev/null; then
-    alias dl="eza --icons --group-directories-first"
-    alias dll="eza -lbF --icons --group-directories-first"
-    alias dla="eza -lbabghHliS --icons --group-directories-first"
+if command -v eza &>/dev/null; then
+  alias dl="eza --icons --group-directories-first"
+  alias dll="eza -lbF --icons --group-directories-first"
+  alias dla="eza -lbabghHliS --icons --group-directories-first"
 else
-    echo "Command 'eza' is inaccessible." >&2
+  echo "Command 'eza' is inaccessible." >&2
 fi
 
 # ls
